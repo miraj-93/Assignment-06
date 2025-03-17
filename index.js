@@ -1,13 +1,51 @@
-// Show alert when the homepage loads
-window.onload = function () {
-    alert("Welcome to the Learning Janala!                                                প্রথমেই ইউজার নাম ও পাসওয়ার্ড 1234 দিয়ে Get Started বাটন ক্লিক করুন,                                                                                   আমাদের সাথে আপনার জার্নি শুরু করুন");
+//Firstly no see navbar
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("navbar").classList.add("hidden"); // Hide navbar section
+    document.getElementById("faQHandle").classList.add("hidden");//hide QueastionAnswer Section
+    document.getElementById("learnSection").classList.add("hidden");//hide Learing level Section
+    document.getElementById("VocabularySection").classList.add("hidden");// Learing Vocabulary Section
+   
+});
+// Logout function
+  document.getElementById("LogoutBtn").addEventListener("click", () => {
+    document.getElementById("login-section").style.display = "flex"; // Show login section
+   document.getElementById("navbar").classList.add("hidden"); // Hide navbar
+
+});
+
+// Function to show/hide navbar on login
+const hideNavbar = () => {
+    const username = document.getElementById("userName").value;
+    const password = document.getElementById("userPassword").value;
+    const navbar = document.getElementById("navbar");
+    const loginSection = document.getElementById("login-section");
+    const faQHandle=document.getElementById("faQHandle");
+    const learnSection=document.getElementById("learnSection");
+    const VocabularySection=document.getElementById("VocabularySection");
+    if (username !== "" && password === "1234") {
+        navbar.classList.remove("hidden"); // Show navbar
+        faQHandle.classList.remove("hidden");
+        learnSection.classList.remove("hidden");
+        VocabularySection.classList.remove("hidden");
+
+ // 1.0 সেকেন্ড পর এলার্ট  (2000ms)
+ setTimeout(() => {
+    alert(" successfully Login!                                                               Now  Go to Navbar and start to Learn with Us!                                                Click on Learn Button");
+}, 1000);
+
+    } else {
+        alert("Invalid username or password!                                                     চার সংখ্যার কোড ব্যবহার করুন=1234");
+    }
 };
+
+
+/*
 // Function to fetch levels from API when Learn button is clicked
 const fetchLevels = () => {
     fetch('https://openapi.programming-hero.com/api/levels/all')
         .then(res => res.json())
         .then(data => loadLevels(data.data)) // Pass correct data
-        .catch(error => console.error("Error fetching levels:", error));
+       
 };
 
 // Function to display levels
@@ -17,10 +55,10 @@ const loadLevels = (levels) => {
 
     levels.forEach(level => {
         const levelCard = document.createElement("div");
-        levelCard.classList.add("p-2", "border", "rounded-md", "shadow-md", "bg-gray-100", "mb-1");
+        levelCard.classList.add("p-2","border", "rounded-md", "shadow-md", "hover:bg-green-600", "mb-1");
 
         levelCard.innerHTML = `
-            <button onclick="fetchLesson"('${level.level_id}')" class="text-sm text-blue-600 cursor-pointer">
+            <button onclick="fetchLesson"('${level.level_id}')" class="text-sm font-white  cursor-pointer">
                 ${level.level_no}: ${level.lessonName}
             </button>
         `;
@@ -28,6 +66,7 @@ const loadLevels = (levels) => {
         dataContainer.appendChild(levelCard);
     });
 };
+fetchLevels();
 
 // Function to fetch vocabulary based on level selection
 const fetchLesson = (id) => {
@@ -55,69 +94,101 @@ const loadLessons = (lessons) => {
         lessonContainer.appendChild(lessonCard);
     });
 };
+*/
 
-// Attach event listener to the Learn button
-document.getElementById("learnBtn").addEventListener("click", fetchLevels);
+//load from ApI Level section
 
-// Function to toggle FAQ section smoothly
-const toggleFAQ = () => {
-    const questionAnswer = document.getElementById("faQHandle");
-    questionAnswer.classList.toggle("hidden");
-};
+function loadLevels(){
+    fetch("https://openapi.programming-hero.com/api/levels/all")
+.then((res)=>res.json())
+.then((data)=>displayLevels(data.data))
 
-// Attach event listener for FAQ button
-document.getElementById("questionAnswerBtn").addEventListener("click", toggleFAQ);
+}
 
+function loadData(){
+    fetch("https://openapi.programming-hero.com/api/words/all")
+    .then((response)=> response.json())
+    .then( (data)=>displayDatas(data.data));
+}
 
-//Firstly no see navbar
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("navbar").classList.add("hidden"); // Hide navbar
-    document.getElementById("faQHandle").classList.add("hidden");
-});
-// Logout function
-document.getElementById("LogoutBtn").addEventListener("click", () => {
-    document.getElementById("login-section").style.display = "flex"; // Show login section
-   document.getElementById("navbar").classList.add("hidden"); // Hide navbar
+/*object
+{
+  "id": 102,
+  "level_no": 2,
+  "lessonName": "Everyday Words"
+}
+  */
 
-});
+function loadLevelsData(id){
 
-// Function to show/hide navbar on login
-const hideNavbar = () => {
-    const username = document.getElementById("userName").value;
-    const password = document.getElementById("userPassword").value;
-    const navbar = document.getElementById("navbar");
-    const loginSection = document.getElementById("login-section");
-     const faQHandle=document.getElementById("faQHandle");
-    if (username !== "" && password === "1234") {
-        navbar.classList.remove("hidden"); // Show navbar
-        faQHandle.classList.remove("hidden");
+const url=`https://openapi.programming-hero.com/api/level/${id}`
+fetch(url)
+.then((res)=>res.json())
+.then((data) =>displayDatas (data.data))
+     //{
+   // removeActiveClass();
+    //no active class
 
- // দুই সেকেন্ড পর এলার্ট পার্ট (2000ms)
- setTimeout(() => {
-    alert(" successfully Login!                                                               Now  Go to Navbar and start to Learn with Us!                                                Click on Learn Button");
-}, 2000);
-
-    } else {
-        alert("Invalid username or password!                                                     চার সংখ্যার কোড ব্যবহার করুন");
-    }
-};
-
-
-
-
-
-
-const faQHandle = () => {// Function to scroll to and toggle FAQ section
-    const faqSection = document.getElementById("faQHandle");
-
+    const clickedButton = document.getElementById(`level-${id}`);
     
-    faqSection.classList.toggle("hidden");// Toggle visibility
+    clickedButton.classList.add("active");
+    //console.log( clickedButton);
+//});
 
-    
-    if (!faqSection.classList.contains("hidden")) {// Scroll smoothly to the FAQ section if it's visible
-        faqSection.scrollIntoView({ behavior: "smooth" });
+}
+
+function displayLevels(levels){
+
+    const levelContainer=document.getElementById("learnContainer");
+
+    for(let level of levels){
+
+        //console.log(level);
+
+const levelDiv=document.createElement("div");
+levelDiv.innerHTML=`
+ <button id="${level.id}" onclick="loadLevelsData(${level.level_no})"  class="btn btn-md hover:bg-green-700 p-2 m-2 text-28 ">${level.lessonName} </button>
+`;
+ levelContainer.append(levelDiv);
     }
-};
+}
+/*
+{
+    "id": 4,
+    "level": 5,
+    "word": "Diligent",
+    "meaning": "পরিশ্রমী",
+    "pronunciation": "ডিলিজেন্ট"
+  }
+    */
+  const displayDatas=(data)=>{
+
+        //console.log(data)
+        const dataContainer=document.getElementById("vocabList")
+        dataContainer.innerHTML=" ";
+        if(data.lenght==0){
+            dataContainer.innerHTML=`<div> 
+            <img src="assets\assets\alert-error.png">
+            <h1>Sorry! No Word  Here..Go Next..</h1></div>`;
+            return;
+        }
+
+        data.forEach(data=>{console.log(data);
+
+            const dataCard=document.createElement("div")
+            dataCard.innerHTML=`
+            <h3 class="text-md border shadow-lg shadow-green-800 bg-slate-200 p-4 w-[210px]  h-[210px] rounded-lg">Word: <br>${data.word}<br>[${data.pronunciation}]<br> অর্থ(বাংলা)= ${data.meaning}</h3>
+            `;
+            dataContainer.append(dataCard);
+        });
+
+    };
+
+loadLevels();
+loadData();
+loadLevelsData();
 
 
-document.getElementById("questionAnswerBtn").addEventListener("click", faQHandle);// Attach event listener to FAQ button
+
+
+

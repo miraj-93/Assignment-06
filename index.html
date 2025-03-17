@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
-<body>
+<body class="overflow-x-hidden">
     
-<header id="navbar" class="remove">
-    <nav class="flex justify-between items-center w-11/12 mx-auto  border-b-2 border-slate-400  p-4">
+  <header id="navbar" >
+    <nav class="flex justify-between items-center w-11/12 mx-auto  border-b-2 border-slate-400  p-4 sm:flex-row sm:justify-between sm:items-center">
         
         <!--LOGO SECTION-->
         <div class="flex justify-centerc items-center"> 
@@ -25,9 +25,9 @@
         </div>
      <!--Nav Bar Button Section-->
         <div class="flex gap-2">
-      <button  id="questionAnswerBtn" class="btn hover:bg-green-600 rounded-md"><i class="fa-regular fa-circle-question"></i>FAQ</button>
-      <button id="learnBtn" onclick="fetchLevels()" class="btn hover:bg-green-500 rounded-md"><i class="fa-solid fa-book-open"></i>Learn</button>
-      <button id="LogoutBtn" class="btn nav-btn  rounded-md bg-red-500 text-white hover:bg-green-600 "><i class="fa-solid fa-arrow-right-from-bracket"></i>LogOut</button>
+      <button  id="questionAnswerBtn" onclick="location.href='#faQHandle'"class="btn hover:bg-green-600 rounded-md"><i class="fa-regular fa-circle-question"></i>FAQ</button>
+      <button id=""  onclick="location.href='#learnSection'"class="btn hover:bg-green-500 rounded-md"><i class="fa-solid fa-book-open"></i>Learn</button>
+      <button id="LogoutBtn"  class="btn nav-btn  rounded-md bg-red-500 text-white hover:bg-green-600 "><i class="fa-solid fa-arrow-right-from-bracket"></i>LogOut</button>
      
     </div>
     </nav>
@@ -35,21 +35,25 @@
 
 
 
+
+
+
+
 <!--Banner Section-->
  <main id="login-section">
-    <section id="" class="flex justify-between items-center p-4">
+    <section id="" class="flex justify-between items-center p-4 w-11/12">
 
-        <div class="pl-20">
+        <div class="pl-20 w-full">
             <h1 class="text-5xl font-bold "> <span class="text-green-500">English</span> Is Easy!!</h1>
-            <p class="pr-16 my-2">আজ থেকে আপনার ভাষা শেখার যাত্রা শুরু করুন।আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান,আমাদের Interactive Lessions আপনাকে নিয়ে অন্য একটি Levelএ।</p>
-          <section class="flex flex-col space-y-2 w-2/5">
+            <p class="pr-12 my-2">আজ থেকে আপনার ভাষা শেখার যাত্রা শুরু করুন।আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান,আমাদের Interactive Lessions আপনাকে নিয়ে অন্য একটি Levelএ।</p>
+          <section class="flex flex-col space-y-2 w-full">
             <input id="userName" class="p-2" placeholder="Enter Your Name-Miraj" type="text">
             <input id="userPassword" class="p-2" length="4" placeholder="Enter Login Code-1234" type="password" value="required" >
-            <button id="loginBtn" onclick="hideNavbar()" class="btn bg-blue-950 rounded-lg text-white w-5/12" type="button">Get Started</button>
+            <button id="loginBtn" onclick="hideNavbar()" class="btn bg-blue-950 rounded-lg text-white w-[120px] p-4 " type="button">Get Started</button>
            </section>
         </div>
 
-       <div>
+       <div class="w-full">
         <img src="./assets/assets/hero-student.png" alt="" srcset="">
 
        </div>
@@ -62,25 +66,36 @@
 
 
 
-
- <section class="w-11/12 mx-auto text-center mt-28">
+<!--Learning Section started from here-->
+ <section id="learnSection" class="w-11/12 mx-auto text-center mt-28">
        <!--Learning Section-->
-       <div>
-        <h1 class="text-5xl font-extrabold"> <span class="text-green-500">Let's</span> Learn Vocabularies</h1>
-       <div  id="LearningLevel"class="grid grid-cols-7 gap-2 p-3">
-      
-       </div></div>
-
-       <section >
-        <div id="vocabList" class="grid grid-cols-4 gap-1 p-3 text-lg my-4">
-          <h1 class="text-sm">    </h1>
-             
+       <div class="">
+        <h1 class="text-5xl font-extrabold"> 
+          
+          <span class="text-green-500">Let's</span> Learn Vocabularies</h1>
+         <div  id="learnContainer"class="grid md:grid-cols-5 lg:grid-cols-7 rounded-md text-xl p-2">
+         </div>
+      </div>
+      </section>
+       <section id="VocabularySection"  class="w-11/12 mx-auto text-center mt-4">
+        <div id="vocabList" class="grid md:grid-cols-5 gap-3 p-3 text-lg m-4">
+          <p class="text-20">    </p>    
         </div>
-      
+
       </section>
 
-        <p class="text-sm bg-gray-100 w-11/12 h-[120px] text-center p-10 mx-auto">আপনি কোন সেকশন সিলেক্ট করেন নি।<br> <span class="text-lg text-lime-400"> ‍যে কোন একটি সেকশন সিলেক্ট করে শিখতে শুরু করুন।</span></p>
-</section>
+      <section>
+        <div class="py-10 col-span-full flex flex-col justify-center items-center text-center">
+          <img class="w-[120px]" src="./assets/assets/alert-error.png" alt="" />
+          <h2 class="text-2xl font-bold">
+            Oops!! Sorry, There is no content here,Please select Another section...
+          </h2>
+        </div>
+      </section>
+
+   
+
+
 
 
 
@@ -88,8 +103,8 @@
 
 <!--Question Answer Section-->
 <section id="faQHandle" class="w-11/12 mx-auto">
-  <h1 class="text-5xl font-extrabold mb-10 ml-10 mt-10"> <span class="text-green-500">Frequently </span>Asked Question</h1>
-  <div class="collapse collapse-plus bg-base-100 border shadow-md border-base-300 gap-2 w-9/12 mx-auto">
+  <h1 class="text-5xl font-extrabold mb-10 ml-10 mt-10 text-center"> <span class="text-green-500">Frequently </span>Asked Question</h1>
+  <div class="collapse collapse-plus bg-base-100 border shadow-md border-base-300 gap-2 w-11/12 mx-auto">
     <input type="radio" name="my-accordion-3" checked="checked" />
     <div class="collapse-title font-semibold">What Is the difference between var, let, and const?</div>
     <div class="collapse-content text-sm">1. "var"  is
@@ -107,24 +122,24 @@ Cannot be reassigned or redeclared,
 Must be initialized when declared.
     </div>
   </div>
-  <div class="collapse collapse-plus bg-base-100 border border-base-300  w-9/12 mx-auto">
+  <div class="collapse collapse-plus bg-base-100 border border-base-300  w-11/12 mx-auto">
     <input type="radio" name="my-accordion-3" />
     <div class="collapse-title font-semibold">What Is the difference between map(),forEach() and filter()?</div>
     <div class="collapse-content text-sm">1. map() - Returns a New Array.Use map() when you need a new transformed array.
         <br>2. forEach() - Just Loops, No ReturnUse.Use forEach() when you just want to execute code for each item (no need for a return).. <br>3. filter() - Returns a New Array with Condition.Use filter() when you want to extract elements based on a condition.</div>
   </div>
-  <div class="collapse collapse-plus bg-base-100 border border-base-300  w-9/12 mx-auto">
+  <div class="collapse collapse-plus bg-base-100 border border-base-300  w-11/12 mx-auto">
     <input type="radio" name="my-accordion-3" />
     <div class="collapse-title font-semibold">What Are Arroe Function,and how are they different from regular function?</div>
     <div class="collapse-content text-sm">
       Arrow functions have a shorter syntax, inherit this from the surrounding scope and lack the arguments object where as regular functions have their own this support arguments and can be hoisted.</div>
   </div>
-  <div class="collapse collapse-plus bg-base-100 border border-base-300  w-9/12 mx-auto">
+  <div class="collapse collapse-plus bg-base-100 border border-base-300  w-11/12 mx-auto">
     <input type="radio" name="my-accordion-3" />
     <div class="collapse-title font-semibold">How do Javascripts Promises work?</div>
     <div class="collapse-content text-sm">A Promise in JavaScript is an asynchronous operation that will either resolve (success) or reject (failure) in the future. It helps in handling asynchronous tasks like fetching data, reading files, or API calls without blocking the execution.</div>
   </div>
-  <div class="collapse collapse-plus bg-base-100 border border-base-300  w-9/12 mx-auto">
+  <div class="collapse collapse-plus bg-base-100 border border-base-300  w-11/12 mx-auto">
     <input type="radio" name="my-accordion-3" />
     <div class="collapse-title font-semibold">How does Closure work in JavaScripts?</div>
     <div class="collapse-content text-sm">Closures allow functions to access variables from their parent function’s scope, even after the parent function has returned.</div>
@@ -135,7 +150,7 @@ Must be initialized when declared.
 <!--Footer Section-->
 <br>
 <hr class="opacity-20">
-<footer class=" w-full flex  justify-between items-center w-11/12 mx-auto p-10 bg-green-950">
+<footer id="footer" class=" w-full flex  justify-between items-center w-11/12 mx-auto p-10 bg-green-950">
 <div>
   <div class="flex justify-centerc items-center"> 
     <h1 class="text-lg font-bold">
@@ -160,6 +175,8 @@ Must be initialized when declared.
       <h6 class="text-center text-white">Contact: <br>mobile:01851805847 <br>email:mirajulislamcrf@gmail.com</h6>
 </footer>
 
+
 <script src="index.js"></script>
+
 </body>
 </html>
